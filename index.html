@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/icone.png">
+<title>Pas si vite</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+/* Layout: one reading column, legal sections stacked, sources-style footnote footer */
+:root {
+  --bg: #f3f4f5; --fg: #1d2023; --muted: #5d636a; --rule: #d3d6da; --accent: #c8322b; --panel: #e8eaec;
+  --display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #17191b; --fg: #e6e8ea; --muted: #9aa0a7; --rule: #33373b; --accent: #ef5a52; --panel: #212427; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #17191b; --fg: #e6e8ea; --muted: #9aa0a7; --rule: #33373b; --accent: #ef5a52; --panel: #212427; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 42rem; margin: 0 auto; padding-block: 3rem 4rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 2.25rem; }
+header { display: flex; flex-direction: column; gap: .5rem; border-bottom: 1px solid var(--rule); padding-bottom: 1.5rem; }
+.brand { font-family: var(--display); font-weight: 800; font-size: 2.6rem; line-height: 1; letter-spacing: -.02em; }
+.brand span { color: var(--accent); }
+.meta { color: var(--muted); font-size: .9rem; }
+h2 { font-family: var(--display); font-weight: 800; font-size: 1.35rem; margin: 0 0 .5rem; text-wrap: balance; }
+section p, section ul { margin: 0 0 .75rem; }
+section ul { padding-left: 1.2rem; }
+li { margin-bottom: .35rem; }
+.contact { background: var(--panel); padding: 1rem 1.25rem; border-radius: 4px; display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: baseline; }
+.contact code { font-size: 1rem; user-select: all; overflow-wrap: anywhere; }
+a { color: var(--fg); text-decoration-color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+footer { color: var(--muted); font-size: .85rem; border-top: 1px solid var(--rule); padding-top: 1rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="brand">Pas si vite<span>.</span></div>
+    <div class="meta">Vérification de l'information politique, en moins d'une minute.</div>
+  </header>
+  <section>
+    <p>Avant de liker, de partager ou de s'indigner, on vérifie. Pas si vite est un collectif bénévole qui décortique les chiffres, les phrases chocs et les infos qui circulent dans l'actualité politique. Chaque vidéo donne ses sources.</p>
+    <p>On ne se prétend pas neutres : on est de gauche, et on le dit. Mais on s'interdit de tordre les faits, y compris quand ils nous arrangent. Une erreur ? Signalez-la, on corrige publiquement.</p>
+  </section>
+  <section>
+    <h2>Nous suivre</h2>
+    <p>YouTube, TikTok et Instagram : <strong>Pas si vite</strong>.</p>
+    <div class="contact"><strong>Contact</strong> <code>passivite.media@proton.me</code></div>
+  </section>
+  <footer><a href="/confidentialite/">Confidentialité et conditions d'utilisation</a></footer>
+</div>
+</body>
+</html>
