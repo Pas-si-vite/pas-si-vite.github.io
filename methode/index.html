@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/icone.png">
+<title>Pas si vite · Méthode</title>
+<meta name="description" content="Comment Pas si vite vérifie l'information, ce que fait l'IA, ce que fait l'équipe, et comment on corrige nos erreurs.">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+/* Layout: one reading column, legal sections stacked, sources-style footnote footer */
+:root {
+  --bg: #f3f4f5; --fg: #1d2023; --muted: #5d636a; --rule: #d3d6da; --accent: #c8322b; --panel: #e8eaec;
+  --display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #17191b; --fg: #e6e8ea; --muted: #9aa0a7; --rule: #33373b; --accent: #ef5a52; --panel: #212427; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #17191b; --fg: #e6e8ea; --muted: #9aa0a7; --rule: #33373b; --accent: #ef5a52; --panel: #212427; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 42rem; margin: 0 auto; padding-block: 3rem 4rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 2.25rem; }
+header { display: flex; flex-direction: column; gap: .5rem; border-bottom: 1px solid var(--rule); padding-bottom: 1.5rem; }
+.brand { font-family: var(--display); font-weight: 800; font-size: 2.6rem; line-height: 1; letter-spacing: -.02em; }
+.brand span { color: var(--accent); }
+.meta { color: var(--muted); font-size: .9rem; }
+h2 { font-family: var(--display); font-weight: 800; font-size: 1.35rem; margin: 0 0 .5rem; text-wrap: balance; }
+section p, section ul { margin: 0 0 .75rem; }
+section ul { padding-left: 1.2rem; }
+li { margin-bottom: .35rem; }
+.contact { background: var(--panel); padding: 1rem 1.25rem; border-radius: 4px; display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: baseline; }
+.contact code { font-size: 1rem; user-select: all; overflow-wrap: anywhere; }
+a { color: var(--fg); text-decoration-color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+footer { color: var(--muted); font-size: .85rem; border-top: 1px solid var(--rule); padding-top: 1rem; }
+table { width: 100%; border-collapse: collapse; font-size: .95rem; margin: .25rem 0 .75rem; }
+th, td { text-align: left; vertical-align: top; padding: .5rem .5rem .5rem 0; border-bottom: 1px solid var(--rule); }
+th { font-weight: 600; color: var(--muted); font-size: .85rem; }
+td:first-child { font-weight: 600; padding-right: .75rem; }
+.lead { font-family: var(--display); font-weight: 800; font-size: 1.6rem; line-height: 1.15; text-wrap: balance; margin: 0; }
+.lead span { color: var(--accent); }
+ol { padding-left: 1.4rem; margin: 0 0 .75rem; }
+.empty { color: var(--muted); font-style: italic; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <a class="brand" href="/" style="text-decoration:none">Pas si vite<span>.</span></a>
+    <div class="meta">Notre méthode · mise à jour le 24 octobre 2026</div>
+  </header>
+
+  <section>
+    <p class="lead">L'équipe garde le fond. <span>L'IA fait la technique.</span></p>
+  </section>
+
+  <section>
+    <p>On utilise l'intelligence artificielle pour fabriquer nos vidéos. On préfère le dire clairement, et dire où elle s'arrête. Les humain·es de l'équipe choisissent les sujets, vérifient les faits, décident du verdict et de la publication. L'IA aide à chercher, propose des brouillons et fabrique la voix, l'animation et le montage.</p>
+    <p>On ne cherche pas à inonder les réseaux. On publie peu, et seulement ce qu'on a vérifié.</p>
+  </section>
+
+  <section>
+    <h2>Qui fait quoi</h2>
+    <table>
+      <thead><tr><th>Étape</th><th>L'équipe</th><th>L'IA</th></tr></thead>
+      <tbody>
+        <tr><td>Sujet</td><td>Choisit</td><td>Propose des pistes</td></tr>
+        <tr><td>Sources</td><td>Ouvre et lit chaque source</td><td>Cherche et résume</td></tr>
+        <tr><td>Verdict</td><td>Décide</td><td>Propose</td></tr>
+        <tr><td>Script</td><td>Réécrit et valide</td><td>Propose un brouillon</td></tr>
+        <tr><td>Voix, animation, montage</td><td>Relit la vidéo</td><td>Fabrique</td></tr>
+        <tr><td>Publication</td><td>Décide et publie</td><td>Prépare les envois</td></tr>
+      </tbody>
+    </table>
+    <p>Les voix de nos vidéos sont des voix de synthèse. Nos vidéos portent l'étiquette «&nbsp;contenu généré ou modifié par IA&nbsp;» proposée par chaque plateforme.</p>
+  </section>
+
+  <section>
+    <h2>Comment on vérifie</h2>
+    <ol>
+      <li><strong>On part d'une question, pas d'une conclusion.</strong> «&nbsp;Est-ce que c'est vrai&nbsp;?&nbsp;», jamais «&nbsp;Comment prouver que c'est faux&nbsp;?&nbsp;».</li>
+      <li><strong>On remplit une fiche avant d'écrire.</strong> D'où vient l'affirmation, ce qui est vrai, ce qui est faux, ce qu'on ne sait pas, et le meilleur argument de l'autre côté.</li>
+      <li><strong>Un·e humain·e vérifie chaque source.</strong> Une source trouvée par l'IA ne compte pas tant que quelqu'un de l'équipe ne l'a pas ouverte et lue. Chaque chiffre est recopié depuis la source, chaque citation est vérifiée mot à mot.</li>
+      <li><strong>Une vidéo, un seul point.</strong> Le reste, avec toutes les sources, va dans la description.</li>
+      <li><strong>Des relectures avant de publier.</strong> Un petit groupe regarde chaque vidéo et répond à trois questions&nbsp;: c'est clair&nbsp;? c'est juste&nbsp;? je la partagerais&nbsp;?</li>
+    </ol>
+  </section>
+
+  <section>
+    <h2>D'où on parle</h2>
+    <p>On n'est pas neutres&nbsp;: on est de gauche, et on le dit. Mais on s'interdit de tordre les faits, y compris quand ils nous arrangent. Quand une affirmation qui nous plairait est fausse, on le dit aussi.</p>
+  </section>
+
+  <section id="signaler">
+    <h2>Signaler une erreur</h2>
+    <p>Une erreur, une source mal lue, un chiffre dépassé&nbsp;? Écrivez-nous en précisant la vidéo et, si possible, une source. On répond à chaque signalement sérieux, même pour expliquer pourquoi on maintient.</p>
+    <div class="contact"><strong>Contact</strong> <code>passisvite.media@proton.me</code></div>
+  </section>
+
+  <section id="corrections">
+    <h2>Quand on se trompe</h2>
+    <ul>
+      <li><strong>Erreur de détail</strong> (un chiffre, une date, un nom)&nbsp;: on épingle un commentaire de correction et on corrige la description, sur chaque plateforme.</li>
+      <li><strong>Erreur qui change le verdict</strong>&nbsp;: on retire la vidéo et on publie une vidéo de correction, au même endroit, mise en avant au moins autant que l'originale.</li>
+      <li>On ne fait jamais disparaître une erreur en silence&nbsp;: chaque correction est listée ci-dessous.</li>
+    </ul>
+    <h2 style="font-size:1.1rem;margin-top:1.25rem">Journal des corrections</h2>
+    <p class="empty">Aucune correction pour l'instant.</p>
+  </section>
+
+  <footer><a href="/">Accueil</a> · <a href="/confidentialite/">Confidentialité et conditions d'utilisation</a></footer>
+</div>
+</body>
+</html>
