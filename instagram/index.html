@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/icone.png">
+<title>Pas si vite · Connexion Instagram</title>
+<meta name="robots" content="noindex">
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Sans:wght@400;600&display=swap">
+<style>
+/* Layout: one reading column, legal sections stacked, sources-style footnote footer */
+:root {
+  --bg: #f3f4f5; --fg: #1d2023; --muted: #5d636a; --rule: #d3d6da; --accent: #c8322b; --panel: #e8eaec;
+  --display: "Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --body: "IBM Plex Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) {
+  --bg: #17191b; --fg: #e6e8ea; --muted: #9aa0a7; --rule: #33373b; --accent: #ef5a52; --panel: #212427; color-scheme: dark } }
+:root[data-theme="dark"] { --bg: #17191b; --fg: #e6e8ea; --muted: #9aa0a7; --rule: #33373b; --accent: #ef5a52; --panel: #212427; color-scheme: dark }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 16px; line-height: 1.6; }
+.wrap { max-width: 42rem; margin: 0 auto; padding-block: 3rem 4rem;
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 2.25rem; }
+header { display: flex; flex-direction: column; gap: .5rem; border-bottom: 1px solid var(--rule); padding-bottom: 1.5rem; }
+.brand { font-family: var(--display); font-weight: 800; font-size: 2.6rem; line-height: 1; letter-spacing: -.02em; }
+.brand span { color: var(--accent); }
+.meta { color: var(--muted); font-size: .9rem; }
+h2 { font-family: var(--display); font-weight: 800; font-size: 1.35rem; margin: 0 0 .5rem; text-wrap: balance; }
+section p, section ul { margin: 0 0 .75rem; }
+section ul { padding-left: 1.2rem; }
+li { margin-bottom: .35rem; }
+.contact { background: var(--panel); padding: 1rem 1.25rem; border-radius: 4px; display: flex; flex-wrap: wrap; gap: .5rem 1rem; align-items: baseline; }
+.contact code { font-size: 1rem; user-select: all; overflow-wrap: anywhere; }
+a { color: var(--fg); text-decoration-color: var(--accent); text-underline-offset: 3px; }
+a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+footer { color: var(--muted); font-size: .85rem; border-top: 1px solid var(--rule); padding-top: 1rem; }
+label{display:flex;flex-direction:column;gap:.3rem;font-weight:600}
+input{font:inherit;padding:.6rem .7rem;border:1px solid var(--rule);background:var(--bg);color:var(--fg);border-radius:4px;max-width:100%}
+button,.btn{font:inherit;font-weight:600;padding:.6rem 1rem;border:0;border-radius:4px;background:var(--fg);color:var(--bg);cursor:pointer;text-decoration:none;display:inline-block}
+pre{background:var(--panel);padding:1rem;border-radius:4px;overflow-x:auto;white-space:pre-wrap;word-break:break-all;font-size:.85rem}
+.stack{display:flex;flex-direction:column;gap:1rem}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="brand" href="/" style="text-decoration:none">Pas si vite<span>.</span></a>
+    <div class="meta">Connexion du compte Instagram à l'outil de publication (page interne).</div>
+  </header>
+
+  <section id="etape1" class="stack">
+    <h2>1. Autoriser l'appli</h2>
+    <label for="key">ID de l'appli Instagram
+      <input id="key" autocomplete="off" spellcheck="false" inputmode="numeric">
+    </label>
+    <div><button id="go" type="button">Se connecter avec Instagram</button></div>
+    <p class="meta">Tu seras renvoyé ici après avoir accepté. Rien n'est envoyé ailleurs qu'à Instagram.</p>
+  </section>
+
+  <section id="etape2" class="stack" hidden>
+    <h2>2. Obtenir le jeton</h2>
+    <p>Autorisation reçue. Ce code expire en une heure et ne sert qu'une fois.</p>
+    <label for="secret">Clé secrète de l'appli Instagram (reste dans ton navigateur, n'est envoyée nulle part)
+      <input id="secret" type="password" autocomplete="off" spellcheck="false">
+    </label>
+    <p>Copie cette commande dans PowerShell :</p>
+    <pre id="cmd"></pre>
+    <div><button id="copy" type="button">Copier la commande</button></div>
+    <p>La réponse contient <code>access_token</code> (jeton long, 60 jours) et <code>user_id</code>. Mets-les dans les variables d'environnement <code>INSTAGRAM_ACCESS_TOKEN</code> et <code>INSTAGRAM_USER_ID</code> du projet. Ne les colle nulle part ailleurs.</p>
+  </section>
+
+  <section id="erreur" hidden><h2>Autorisation refusée</h2><p id="errmsg"></p></section>
+
+  <footer><a href="/confidentialite/">Confidentialité et conditions d'utilisation</a></footer>
+</div>
+<script>
+const REDIRECT = "https://pas-si-vite.github.io/instagram/";
+const SCOPES = "instagram_business_basic,instagram_business_content_publish";
+const $ = id => document.getElementById(id);
+const store = { get(k){ try { return sessionStorage.getItem(k) || ""; } catch(e){ return ""; } }, set(k,v){ try { sessionStorage.setItem(k,v); } catch(e){} } };
+const q = new URLSearchParams(location.search);
+$("key").value = store.get("ig_key");
+$("go").onclick = () => {
+  const key = $("key").value.trim(); if (!key) { $("key").focus(); return; }
+  const state = Math.random().toString(36).slice(2);
+  store.set("ig_key", key); store.set("ig_state", state);
+  location.href = "https://www.instagram.com/oauth/authorize?" + new URLSearchParams({ enable_fb_login: "0", force_reauth: "true", client_id: key, redirect_uri: REDIRECT, response_type: "code", scope: SCOPES, state });
+};
+function render() {
+  // Instagram ajoute "#_" à la fin du code : on l'enlève.
+  const code = (q.get("code") || "").replace(/#_$/, "");
+  const id = store.get("ig_key") || "APP_ID", secret = $("secret").value.trim() || "APP_SECRET";
+  const body = new URLSearchParams({ client_id: id, client_secret: secret, grant_type: "authorization_code", redirect_uri: REDIRECT, code }).toString();
+  $("cmd").textContent =
+    '$c = curl.exe -s -X POST "https://api.instagram.com/oauth/access_token" -d "' + body + '" | ConvertFrom-Json\n' +
+    'curl.exe -s "https://graph.instagram.com/access_token?grant_type=ig_exchange_token&client_secret=' + encodeURIComponent(secret) + '&access_token=$($c.access_token)"\n' +
+    '"user_id: $($c.user_id)"';
+}
+if (q.get("error")) {
+  $("etape1").hidden = true; $("erreur").hidden = false;
+  $("errmsg").textContent = q.get("error") + " " + (q.get("error_description") || "");
+} else if (q.get("code")) {
+  $("etape1").hidden = true; $("etape2").hidden = false;
+  render(); $("secret").oninput = render;
+  $("copy").onclick = async () => {
+    try { await navigator.clipboard.writeText($("cmd").textContent); $("copy").textContent = "Copiée"; }
+    catch(e) { const r = document.createRange(); r.selectNodeContents($("cmd")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); }
+  };
+}
+</script>
+</body>
+</html>
