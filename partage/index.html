@@ -14,16 +14,40 @@ main { max-width:520px; margin:0 auto; padding:24px 16px; }
 video { width:100%; border-radius:8px; background:#000; }
 a.btn { display:block; margin:16px 0; padding:14px; text-align:center; background:var(--accent); color:#fff; text-decoration:none; font-weight:600; border-radius:8px; }
 p.note { opacity:.7; font-size:15px; }
+a.btn.alt { background:transparent; color:var(--fg); border:2px solid currentColor; }
+textarea { width:100%; box-sizing:border-box; min-height:9em; font:15px/1.4 system-ui, sans-serif; padding:10px; border-radius:8px; border:1px solid #9995; background:transparent; color:var(--fg); }
+button.copy { margin:8px 0 20px; padding:10px 16px; font:600 16px system-ui, sans-serif; border:0; border-radius:8px; background:var(--fg); color:var(--bg); }
+h2 { font-size:19px; margin:28px 0 8px; }
 </style>
 </head>
 <body>
 <main>
-<h1>Relecture : le faux dilemme (v3.1)</h1>
-<p class="note">Version de travail, non publiée. Page temporaire, non référencée.</p>
+<h1>Le faux dilemme : à publier</h1>
+<p class="note">Version validée le 25/10. Page temporaire, non référencée.</p>
 <video src="faux-dilemme-v3.mp4" controls playsinline preload="metadata"></video>
-<a class="btn" href="faux-dilemme-v3.mp4" download="faux-dilemme-v3.mp4">Télécharger la vidéo (8 Mo)</a>
+<a class="btn" href="faux-dilemme-hd.mp4" download="pas-si-vite-faux-dilemme.mp4">Télécharger en haute qualité, pour Instagram (46 Mo)</a>
+<a class="btn alt" href="faux-dilemme-v3.mp4" download="faux-dilemme-v3.mp4">Version légère (8 Mo)</a>
+<h2>Légende TikTok et Instagram</h2>
+<textarea id="leg" readonly>Reconnais la manip n°1 : le faux dilemme. Faire croire qu&#x27;il n&#x27;y a que deux choix, et rendre l&#x27;un des deux repoussant. En 2017, Macron et Le Pen l&#x27;ont utilisé en miroir : « patriotes contre nationalistes », « patriotes contre mondialistes ». On compare une technique de discours, pas des programmes.
+
+Le réflexe : « c&#x27;est soit A, soit B » ? Demande-toi où sont passées les autres options.
+
+Sources : Macron, soirée électorale du 23/04/2017 (vidéo Renaissance, YouTube) ; Le Pen, discours du 07/05/2017 (vidéo franceinfo / France 2) ; définition : Clément Viktorovitch, Le Pouvoir rhétorique, Seuil, 2021. Liens complets dans la description YouTube. Notre méthode : pas-si-vite.github.io/methode
+
+#espritcritique #fauxdilemme #rhétorique #manipulation #éducationauxmédias</textarea>
+<button class="copy" data-for="leg">Copier la légende</button>
+<h2>Commentaire à épingler (YouTube, TikTok, Instagram)</h2>
+<textarea id="com" readonly style="min-height:5em">Au second tour, il n&#x27;y a que deux noms : c&#x27;est notre mode de scrutin, qui pousse souvent au vote « utile ». Une vidéo là-dessus, ça vous intéresse ? Dites-le ici 👇</textarea>
+<button class="copy" data-for="com">Copier le commentaire</button>
 <hr>
 <p class="note">Anciennes versions : <a href="faux-dilemme-v1.mp4" download>faux dilemme v1</a> · <a href="test-ada.mp4" download>test ADA</a></p>
+<script>
+document.querySelectorAll("button.copy").forEach(b => b.addEventListener("click", async () => {
+  const t = document.getElementById(b.dataset.for);
+  try { await navigator.clipboard.writeText(t.value); } catch (e) { t.select(); document.execCommand("copy"); }
+  const old = b.textContent; b.textContent = "Copié ✓"; setTimeout(() => { b.textContent = old; }, 1500);
+}));
+</script>
 </main>
 </body>
 </html>
